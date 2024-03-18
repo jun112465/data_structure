@@ -14,7 +14,8 @@ int main(){
     preorder_print(root);
 
     root = delete_node(root, 6);
+    printf("\n");
     preorder_print(root);
-    
+
     return 0;
 }

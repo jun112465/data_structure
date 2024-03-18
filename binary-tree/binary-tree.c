@@ -41,7 +41,7 @@ TreeNode* delete_node(TreeNode *root, int data){
         while (tmp->left != NULL)
             tmp = tmp->left;
         root->data = tmp->data;
-        root->right = delete_node(root, tmp->data);
+        root->right = delete_node(root->right, tmp->data);
     }
 
     return root;
