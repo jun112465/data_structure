@@ -5,7 +5,7 @@ int main() {
 
     Stack* s = (Stack*)malloc(sizeof(Stack));
     int popped;
-
+                
     init(s);
     printf("%d \n", s->top);
     
