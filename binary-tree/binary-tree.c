@@ -21,9 +21,9 @@ TreeNode* delete_node(TreeNode *root, int data){
         return root;
 
     if(data < root->data) 
-        root->left = delete_node(root->left, data);
-    else if(data > root->data) 
-        root->right = delete_node(root->right, data);
+        root->left = delete_node(root->left, data); //root 업데이트
+    else if(data > root->data)  
+        root->right = delete_node(root->right, data); //root 업데이트
     else{
         // 서브트리가 없거나 하나만 있는 경우
         if(root->left == NULL) {
@@ -41,6 +41,9 @@ TreeNode* delete_node(TreeNode *root, int data){
         while (tmp->left != NULL)
             tmp = tmp->left;
         root->data = tmp->data;
+        // root->right = delete_node(root, tmp->data)
+        // 위에 코드대로 하면 root를 해제시키면서
+        // root->right에 값을 넣는게 불가능해지는 runtime error 발생.
         root->right = delete_node(root->right, tmp->data);
     }
 

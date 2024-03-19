@@ -7,7 +7,7 @@ void init(List *L){
 }
 
 int is_empty(List *L){
-    return (L->head == L->tail);
+    return L->head->next == NULL;
 }
 
 void print_list(List *L){
