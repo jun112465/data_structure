@@ -75,26 +75,27 @@ void Close(PINFO_LIST list){
 
 PPERSON_INFO getInput(){
     PPERSON_INFO person;
-    char user_input[10];
+    char user_input[100];
+    char c;
 
     person = malloc(sizeof(PERSON_INFO));
 
     printf("[NAME] : ");
-    fgets(person->szNam, sizeof(person->szNam), stdin);
-    person->szNam[strlen(person->szNam)-1] = '\0';
+    fgets(user_input, sizeof(user_input), stdin);
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
+    strncpy(person->szNam, user_input, MAX_NAME_LENGTH);
+    person->szNam[MAX_NAME_LENGTH] = '\0';
 
     printf("[AGE] : ");
     fgets(user_input, sizeof(user_input), stdin);
-    user_input[strlen(user_input)-1] = '\0'; // 개행 문자 제거
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
     person->nAge = atoi(user_input);
 
     printf("[PHONE] : ");
-    fgets(person->szPhone, sizeof(person->szPhone), stdin);
-    person->szPhone[strlen(person->szPhone)-1] = '\0';
-
-
-    printf("[PERSON] : [%s, %d, %s]\n", 
-    person->szNam, person->nAge, person->szPhone);
+    fgets(user_input, sizeof(user_input), stdin);
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
+    strncpy(person->szPhone, user_input, MAX_PHONE_LENGTH);
+    person->szPhone[MAX_PHONE_LENGTH] = '\0';
 
     return person;
 }
