@@ -13,4 +13,4 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	del /Q $(BUILD_DIR)\*.o $(TARGET)
+	rm $(BUILD_DIR)/*.o $(TARGET)

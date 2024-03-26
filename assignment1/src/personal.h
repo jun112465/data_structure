@@ -13,8 +13,8 @@
 typedef struct __tPersonalInfo{
 
     int nAge;
-    char szNam[MAX_NAME_LENGTH+1];
-    char szPhone[MAX_PHONE_LENGTH+1];
+    char szPhone[MAX_PHONE_LENGTH+2];
+    char szNam[MAX_NAME_LENGTH+2];
 
 } PERSON_INFO, *PPERSON_INFO;
 
