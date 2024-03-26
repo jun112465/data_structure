@@ -13,8 +13,8 @@
 typedef struct __tPersonalInfo{
 
     int nAge;
-    char szNam[MAX_NAME_LENGTH];
-    char szPhone[MAX_PHONE_LENGTH];
+    char szNam[MAX_NAME_LENGTH+1];
+    char szPhone[MAX_PHONE_LENGTH+1];
 
 } PERSON_INFO, *PPERSON_INFO;
 
@@ -30,7 +30,7 @@ void Add(PINFO_LIST, PPERSON_INFO);
 // delete node from linkedlist and update file
 void Delete(PINFO_LIST, int index);
 // modify node info and update file
-void Modify(PINFO_LIST, int index, PPERSON_INFO);
+void Modify(PINFO_LIST, PPERSON_INFO, PPERSON_INFO);
 // print all info
 void PrintInfo(PINFO_LIST);
 // close main

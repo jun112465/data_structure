@@ -39,9 +39,10 @@ int main(){
 void CLI(PINFO_LIST list){
 
     while(1){
+        char user_input[MAX_PHONE_LENGTH];
         int input;
         int index;
-        PPERSON_INFO p;
+        PPERSON_INFO p1, p2;
 
         printf("\n**INSERT TASK NUMBER**\n\n");
         printf("1. [ADD]\n");
@@ -51,12 +52,15 @@ void CLI(PINFO_LIST list){
         printf("5. [CLOSE]\n");
 
         printf("\nINPUT : ");
-        scanf("%d", &input);
+
+        fgets(user_input, sizeof(user_input), stdin);
+        user_input[strlen(user_input)-1] = '\0'; // 개행 문자 제거
+        input = atoi(user_input);
 
         switch(input){
             case 1:
-                p = getInput();
-                Add(list, p);
+                p1 = getInput();
+                Add(list, p1);
                 break;
             case 2:
                 printf("INSERT INDEX : ");
@@ -64,10 +68,9 @@ void CLI(PINFO_LIST list){
                 Delete(list, index);
                 break;
             case 3:
-                printf("INSERT INDEX : ");
-                scanf("%d", &index);
-                p = getInput();
-                Modify(list, index, p);
+                p1 = getInput();
+                p2 = getInput();
+                Modify(list, p1, p2);
                 break;
             case 4:
                 PrintInfo(list);
@@ -96,18 +99,36 @@ void Close(PINFO_LIST list){
 
 PPERSON_INFO getInput(){
     PPERSON_INFO person;
+    char user_input[100];
 
     person = malloc(sizeof(PERSON_INFO));
 
     printf("[NAME] : ");
-    //fgets(person->szNam, sizeof(MAX_NAME_LENGTH), stdin);
-    scanf(" %[^\n]s", person->szNam);
+    fgets(user_input, sizeof(user_input), stdin);
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
+    strncpy(person->szNam, user_input, MAX_NAME_LENGTH);
+    person->szNam[MAX_NAME_LENGTH] = '\0';
 
     printf("[AGE] : ");
-    scanf("%d", &person->nAge);
+    fgets(user_input, sizeof(user_input), stdin);
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
+    person->nAge = atoi(user_input);
 
     printf("[PHONE] : ");
-    scanf(" %[^\n]s", person->szPhone);
+    fgets(user_input, sizeof(user_input), stdin);
+    user_input[strlen(user_input) - 1] = '\0'; // 개행 문자 제거
+    strncpy(person->szPhone, user_input, MAX_PHONE_LENGTH);
+    person->szPhone[MAX_PHONE_LENGTH] = '\0';
+
+    // printf("[NAME] : ");
+    // //fgets(person->szNam, sizeof(MAX_NAME_LENGTH), stdin);
+    // scanf(" %[^\n]s", person->szNam);
+
+    // printf("[AGE] : ");
+    // scanf("%d", &person->nAge);
+
+    // printf("[PHONE] : ");
+    // scanf(" %[^\n]s", person->szPhone);
 
     return person;
 }
