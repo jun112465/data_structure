@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/jun/gnet/workspace/assignment/graph",
-      "program": "c:/Users/jun/gnet/workspace/assignment/graph/build/Debug/outDebug",
+      "cwd": "c:/Users/jun/gnet/workspace/assignment/assignment1",
+      "program": "c:/Users/jun/gnet/workspace/assignment/assignment1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
