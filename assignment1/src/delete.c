@@ -3,7 +3,7 @@
 void Delete(PINFO_LIST list, int index){
 
     // handling index exception
-    if(index > MAX_LIST_LENGTH || index < 1 || index>list->size){
+    if(index < 1 || index > list->size){
         printf("[EXCEPTION] index is out of bound\n");
         return;
     }
