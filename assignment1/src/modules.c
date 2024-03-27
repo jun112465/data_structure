@@ -60,7 +60,7 @@ int validate_input(const char *str, int type) {
             return 0; // 알파벳이 아닌 문자가 포함된 경우 실패로 처리
         str++;
     }
-    return 1; // 모든 문자가 알파벳인 경우 성공
+    return 1; // 모든 문자가 알파벳이거나 숫자인 경우 성공
 }
 
 int search(char *input_buffer, PINFO_LIST list){
@@ -107,9 +107,6 @@ PPERSON_INFO get_person_info(char *input_buffer){
 
     person = malloc(sizeof(PERSON_INFO));
 
-    // fgets() -> "hello\n\0" -> "hello\0\0"
-    // 
-
     printf("[NAME]");
     printf("[MAX_LENGTH=%d] ", MAX_NAME_LENGTH);
     fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
@@ -149,3 +146,11 @@ PPERSON_INFO get_person_info(char *input_buffer){
 
     return person;
 }
+
+int get_int(char *input_buffer){
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+    return atoi(input_buffer);
+}
+
+

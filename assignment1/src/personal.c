@@ -5,9 +5,6 @@
 void Close(PINFO_LIST);
 void CLI(PINFO_LIST);
 
-int get_int(char*);
-PPERSON_INFO get_person_info(char*);
-
 int main(){
     // initialize list
     PINFO_LIST plist = NULL;
@@ -74,10 +71,4 @@ void Close(PINFO_LIST list){
     PrintInfo(list);
 
     free(list);
-}
-
-int get_int(char *input_buffer){
-    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
-    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
-    return atoi(input_buffer);
 }
