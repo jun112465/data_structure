@@ -20,13 +20,13 @@ PINFO_LIST Load(){
     // load to memory
     while(fread(&list->arr[list->size], sizeof(PERSON_INFO), 1, fp) == 1){
         list->size++;
-        // if(list->size == list->max_size){
-        //     list->max_size *= 2;
-        //     PPERSON_INFO tmp = (PPERSON_INFO)calloc(sizeof(PERSON_INFO), list->max_size);
-        //     memcpy(list->arr, tmp, list->size);
-        //     free(list->arr);
-        //     list->arr = tmp;
-        // }
+        if(list->size >= list->max_size){
+            list->max_size *= 2;
+            PPERSON_INFO tmp = (PPERSON_INFO)calloc(sizeof(PERSON_INFO), list->max_size);
+            memcpy(tmp, list->arr, sizeof(PERSON_INFO) * list->size);
+            free(list->arr);
+            list->arr = tmp;
+        }
     } 
 
     // printf("size : %d\n", list->size);

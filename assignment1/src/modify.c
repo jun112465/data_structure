@@ -2,6 +2,8 @@
 
 void Modify(PINFO_LIST list, PPERSON_INFO after, PPERSON_INFO before){
 
+    if(after==NULL || before==NULL) return;
+
     int flag = 0;
 
     // find target

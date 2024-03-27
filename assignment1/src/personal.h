@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define LIST_FILE "infolist"
 #define MAX_NAME_LENGTH 10
@@ -42,5 +43,6 @@ void add_dummy_data(PINFO_LIST);
 int equal(PPERSON_INFO p1, PPERSON_INFO p2);
 void update_file(PINFO_LIST list);
 void print_function(char *);
+int validate_input(const char *str, int type);
 
 #endif
