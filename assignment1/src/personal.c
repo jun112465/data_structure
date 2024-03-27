@@ -57,11 +57,22 @@ void CLI(PINFO_LIST list){
                 break;
             case 3:
                 printf("[TASK] MODIFY\n");
-                printf("[TARGET]\n");
-                p1 = get_person_info(input_buffer);
-                printf("[UPDATE TO]\n");
-                p2 = get_person_info(input_buffer);
-                Modify(list, p2, p1);
+                while (1)
+                {
+                    int n = search(input_buffer, list);
+                    if(n == 0) break;
+                }
+
+                change(input_buffer, list);
+
+                //modifyCLI(input_buffer, list);
+
+
+                // printf("[TARGET]\n");
+                // p1 = get_person_info(input_buffer);
+                // printf("[UPDATE TO]\n");
+                // p2 = get_person_info(input_buffer);
+                // Modify(list, p2, p1);
                 break;
             case 4:
                 printf("[TASK] PRINT\n");
@@ -93,50 +104,50 @@ int get_int(char *input_buffer){
     return atoi(input_buffer);
 }
 
-PPERSON_INFO get_person_info(char *input_buffer){
-    PPERSON_INFO person;
+// PPERSON_INFO get_person_info(char *input_buffer){
+//     PPERSON_INFO person;
 
-    person = malloc(sizeof(PERSON_INFO));
+//     person = malloc(sizeof(PERSON_INFO));
 
-    // fgets() -> "hello\n\0" -> "hello\0\0"
-    // 
+//     // fgets() -> "hello\n\0" -> "hello\0\0"
+//     // 
 
-    printf("[NAME]");
-    printf("[MAX_LENGTH=%d] ", MAX_NAME_LENGTH);
-    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
-    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
-    if(!validate_input(input_buffer, 1)){
-        printf("[EXCEPTION] only alphabets are allowed\n");
-        free(person);
-        return NULL;
-    }
-    strncpy(person->szNam, input_buffer, MAX_NAME_LENGTH);
-    person->szNam[MAX_NAME_LENGTH] = '\0';
+//     printf("[NAME]");
+//     printf("[MAX_LENGTH=%d] ", MAX_NAME_LENGTH);
+//     fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+//     input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+//     if(!validate_input(input_buffer, 1)){
+//         printf("[EXCEPTION] only alphabets are allowed\n");
+//         free(person);
+//         return NULL;
+//     }
+//     strncpy(person->szNam, input_buffer, MAX_NAME_LENGTH);
+//     person->szNam[MAX_NAME_LENGTH] = '\0';
 
-    printf("[AGE] ");
-    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
-    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
-    if(!validate_input(input_buffer, 2)){
-        // NAN 
-        printf("[EXCEPTION] only numbers are allowed\n");
-        free(person);
-        return NULL;
-    }
-    person->nAge = atoi(input_buffer);
+//     printf("[AGE] ");
+//     fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+//     input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+//     if(!validate_input(input_buffer, 2)){
+//         // NAN 
+//         printf("[EXCEPTION] only numbers are allowed\n");
+//         free(person);
+//         return NULL;
+//     }
+//     person->nAge = atoi(input_buffer);
 
 
-    printf("[PHONE]");
-    printf("[MAX_LENGTH=%d] ", MAX_PHONE_LENGTH);
-    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
-    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
-    if(!validate_input(input_buffer, 2)){
-        // NAN 
-        printf("[EXCEPTION] only numbers are allowed\n");
-        free(person);
-        return NULL;
-    }
-    strncpy(person->szPhone, input_buffer, MAX_PHONE_LENGTH);
-    person->szPhone[MAX_PHONE_LENGTH] = '\0';
+//     printf("[PHONE]");
+//     printf("[MAX_LENGTH=%d] ", MAX_PHONE_LENGTH);
+//     fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+//     input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+//     if(!validate_input(input_buffer, 2)){
+//         // NAN 
+//         printf("[EXCEPTION] only numbers are allowed\n");
+//         free(person);
+//         return NULL;
+//     }
+//     strncpy(person->szPhone, input_buffer, MAX_PHONE_LENGTH);
+//     person->szPhone[MAX_PHONE_LENGTH] = '\0';
 
-    return person;
-}
+//     return person;
+// }

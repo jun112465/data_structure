@@ -62,3 +62,90 @@ int validate_input(const char *str, int type) {
     }
     return 1; // 모든 문자가 알파벳인 경우 성공
 }
+
+int search(char *input_buffer, PINFO_LIST list){
+
+    printf("[SEARCH BY NAME, AGE, PHONE] ");
+
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+
+    printf("[RESULT]\n");
+    printf("[INDEX] : [NAME, AGE, PHONE]\n");
+
+    // search by name
+    if(validate_input(input_buffer, 1)){
+        for(int i=0; i<list->size; i++){
+            if(strcmp(list->arr[i].szNam, input_buffer) == 0){
+                PPERSON_INFO person = &list->arr[i];
+                printf("[%d] : [%s, %d, %s]\n", i + 1, person->szNam, person->nAge, person->szPhone);
+            }
+        }
+    }
+
+    // search by age or phone
+    if(validate_input(input_buffer, 2)){
+        for (int i = 0; i < list->size; i++){
+            if (strcmp(list->arr[i].szPhone, input_buffer)==0 || list->arr[i].nAge==atoi(input_buffer)){
+                PPERSON_INFO person = &list->arr[i];
+                printf("[%d] : [%s, %d, %s]\n", i + 1, person->szNam, person->nAge, person->szPhone);
+            }
+        }
+    }
+
+    printf("[ALARM] search again? [Y/N] ");
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0';
+
+    if(strcmp(input_buffer, "N")==0 || strcmp(input_buffer, "n")==0) return 0;
+    else return 1;
+}
+
+
+PPERSON_INFO get_person_info(char *input_buffer){
+    PPERSON_INFO person;
+
+    person = malloc(sizeof(PERSON_INFO));
+
+    // fgets() -> "hello\n\0" -> "hello\0\0"
+    // 
+
+    printf("[NAME]");
+    printf("[MAX_LENGTH=%d] ", MAX_NAME_LENGTH);
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+    if(!validate_input(input_buffer, 1)){
+        printf("[EXCEPTION] only alphabets are allowed\n");
+        free(person);
+        return NULL;
+    }
+    strncpy(person->szNam, input_buffer, MAX_NAME_LENGTH);
+    person->szNam[MAX_NAME_LENGTH] = '\0';
+
+    printf("[AGE] ");
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+    if(!validate_input(input_buffer, 2)){
+        // NAN 
+        printf("[EXCEPTION] only numbers are allowed\n");
+        free(person);
+        return NULL;
+    }
+    person->nAge = atoi(input_buffer);
+
+
+    printf("[PHONE]");
+    printf("[MAX_LENGTH=%d] ", MAX_PHONE_LENGTH);
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+    if(!validate_input(input_buffer, 2)){
+        // NAN 
+        printf("[EXCEPTION] only numbers are allowed\n");
+        free(person);
+        return NULL;
+    }
+    strncpy(person->szPhone, input_buffer, MAX_PHONE_LENGTH);
+    person->szPhone[MAX_PHONE_LENGTH] = '\0';
+
+    return person;
+}

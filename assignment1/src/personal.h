@@ -11,6 +11,7 @@
 #define MAX_PHONE_LENGTH 20
 #define MAX_LIST_LENGTH 3
 #define LIST_INIT_SIZE 1 
+#define INPUT_BUFFER_SIZE 1024
 
 typedef struct __tPersonalInfo{
 
@@ -33,7 +34,9 @@ void Add(PINFO_LIST, PPERSON_INFO);
 // delete node from linkedlist and update file
 void Delete(PINFO_LIST, int index);
 // modify node info and update file
-void Modify(PINFO_LIST, PPERSON_INFO after, PPERSON_INFO before);
+// void Modify(PINFO_LIST, PPERSON_INFO after, PPERSON_INFO before);
+void Modify(PINFO_LIST, int, PPERSON_INFO before);
+void modifyCLI(char *, PINFO_LIST);
 // print all info
 void PrintInfo(PINFO_LIST);
 // close main
@@ -44,5 +47,10 @@ int equal(PPERSON_INFO p1, PPERSON_INFO p2);
 void update_file(PINFO_LIST list);
 void print_function(char *);
 int validate_input(const char *str, int type);
+
+void change(char *input_buffer, PINFO_LIST list);
+int search(char *, PINFO_LIST);
+
+PPERSON_INFO get_person_info(char *input_buffer);
 
 #endif
