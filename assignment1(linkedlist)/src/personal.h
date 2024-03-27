@@ -9,21 +9,19 @@
 #define LIST_FILE "infolist"
 #define MAX_NAME_LENGTH 10
 #define MAX_PHONE_LENGTH 21
-#define MAX_LIST_LENGTH 3
-#define LIST_INIT_SIZE 1 
 #define INPUT_BUFFER_SIZE 1024
 
 typedef struct __tPersonalInfo{
-
     int nAge;
     char szPhone[MAX_PHONE_LENGTH+2];
     char szNam[MAX_NAME_LENGTH+2];
 
+    struct __tPersonalInfo *next;
+
 } PERSON_INFO, *PPERSON_INFO;
 
 typedef struct __tPersonalInfoList{
-    PERSON_INFO *arr;
-    int max_size;
+    PERSON_INFO *head;
     int size;
 } INFO_LIST, *PINFO_LIST;
 
@@ -37,7 +35,7 @@ void Add(PINFO_LIST, PPERSON_INFO);
 void Delete(PINFO_LIST, int index);
 
 // modify node info and update file
-void Modify(PINFO_LIST, int, PPERSON_INFO before);
+void Modify(PINFO_LIST, int, PPERSON_INFO);
 
 // print all info
 void PrintInfo(PINFO_LIST);

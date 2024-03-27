@@ -10,7 +10,7 @@ void Add(PINFO_LIST list, PPERSON_INFO person){
         list->max_size *= 2;
         PPERSON_INFO tmp = (PPERSON_INFO)calloc(sizeof(PERSON_INFO), list->max_size);
         memcpy(tmp, list->arr, list->size * sizeof(PERSON_INFO));
-        //free(list->arr);
+        free(list->arr);
 
         list->arr = tmp;
     }
