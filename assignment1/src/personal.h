@@ -48,7 +48,7 @@ void update_file(PINFO_LIST list);
 void print_function(char *);
 int validate_input(const char *str, int type);
 
-void change(char *input_buffer, PINFO_LIST list);
+void get_modify_input(char *input_buffer, PINFO_LIST list);
 int search(char *, PINFO_LIST);
 
 PPERSON_INFO get_person_info(char *input_buffer);
