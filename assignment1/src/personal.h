@@ -8,7 +8,8 @@
 #define LIST_FILE "infolist"
 #define MAX_NAME_LENGTH 10
 #define MAX_PHONE_LENGTH 20
-#define MAX_LIST_LENGTH 5
+#define MAX_LIST_LENGTH 3
+#define LIST_INIT_SIZE 1 
 
 typedef struct __tPersonalInfo{
 
@@ -20,6 +21,7 @@ typedef struct __tPersonalInfo{
 
 typedef struct __tPersonalInfoList{
     PERSON_INFO *arr;
+    int max_size;
     int size;
 } INFO_LIST, *PINFO_LIST;
 
@@ -30,7 +32,7 @@ void Add(PINFO_LIST, PPERSON_INFO);
 // delete node from linkedlist and update file
 void Delete(PINFO_LIST, int index);
 // modify node info and update file
-void Modify(PINFO_LIST, PPERSON_INFO, PPERSON_INFO);
+void Modify(PINFO_LIST, PPERSON_INFO after, PPERSON_INFO before);
 // print all info
 void PrintInfo(PINFO_LIST);
 // close main
@@ -40,7 +42,5 @@ void add_dummy_data(PINFO_LIST);
 int equal(PPERSON_INFO p1, PPERSON_INFO p2);
 void update_file(PINFO_LIST list);
 void print_function(char *);
-
-
 
 #endif
