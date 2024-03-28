@@ -11,8 +11,6 @@ int main(){
 }
 
 void CLOSE(PLIST list){
-    // PPERSON_INFO curnode = list->head;
-    // PPERSON_INFO tmp;
     PNODE curnode = list->head;
     PNODE tmp;
 

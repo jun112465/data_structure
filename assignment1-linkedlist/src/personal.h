@@ -37,7 +37,13 @@ typedef struct linkedlist{
     int size;
 }LIST, *PLIST;
 
-
+// functions
+PLIST Load();
+void Add(PLIST, PPERSON_INFO);
+void Delete(PLIST, int index);
+void Modify(PLIST, int, PPERSON_INFO);
+void PrintInfo(PLIST);
+void Close(PLIST);
 
 // functions for linked list
 PNODE create_node();
@@ -50,47 +56,12 @@ void file_add(PPERSON_INFO person);
 void file_delete(int index);
 void file_modify(int index, PPERSON_INFO person);
 
-
-
-
-
-
-
-
-// load info to linkedlist
-PLIST Load();
-
-// add info to linkedlist and file
-void Add(PLIST, PPERSON_INFO);
-
-// delete node from linkedlist and update file
-void Delete(PLIST, int index);
-
-// modify node info and update file
-void Modify(PLIST, int, PPERSON_INFO);
-
-// print all info
-void PrintInfo(PLIST);
-
-// close main
-void Close(PLIST);
-
-
+// modules
 void add_dummy_data(PINFO_LIST);
-
 int equal(PPERSON_INFO p1, PPERSON_INFO p2);
-
-// update file with memory
 void update_file(PINFO_LIST list);
-
-// checks whether alphabet or number string
 int validate_input(const char *str, int type);
-
-// gets Integer to buffer
 int get_int(char *input_buffer);
-
-
-// cli and modules for modification
 PPERSON_INFO get_person_info(char *input_buffer);
 int ask_search_again(char*);
 void search(char *, PLIST);
