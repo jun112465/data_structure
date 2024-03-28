@@ -1,12 +1,11 @@
 #include "personal.h"
 
-PINFO_LIST Load(){
-    PERSON_INFO person;
-    PINFO_LIST list;
+PLIST Load(){
+    PLIST list;
     FILE *fp;
 
-    list = (PINFO_LIST*)malloc(sizeof(INFO_LIST));
-    list->head = (PERSON_INFO*)malloc(sizeof(PERSON_INFO));
+    list = (PLIST)malloc(sizeof(PLIST));
+    list->head = (PNODE)malloc(sizeof(PNODE));
     list->head->next = NULL;
     list->size = 0;
 
@@ -20,11 +19,14 @@ PINFO_LIST Load(){
     while(1){
         int n;
         PPERSON_INFO person = (PPERSON_INFO)malloc(sizeof(PERSON_INFO));
-
         n = fread(person, sizeof(PERSON_INFO), 1, fp);
-        Add(list, person);
 
-        if(n == 0) break;
+        if(n == 0){
+            free(person);
+            break;
+        } 
+
+        insert_node(list, person);
     }
 
     return list;

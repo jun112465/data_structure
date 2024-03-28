@@ -7,6 +7,8 @@
 #include <ctype.h>
 
 #define LIST_FILE "infolist"
+#define LIST_FILE_TMP "tmpfile"
+
 #define MAX_NAME_LENGTH 10
 #define MAX_PHONE_LENGTH 21
 #define INPUT_BUFFER_SIZE 1024
@@ -25,23 +27,53 @@ typedef struct __tPersonalInfoList{
     int size;
 } INFO_LIST, *PINFO_LIST;
 
-// load info to linkedlist
-PINFO_LIST Load();
+typedef struct node{
+    PPERSON_INFO person;
+    struct node *next;
+}NODE, *PNODE;
 
-// add info to linkedlist and update file
-void Add(PINFO_LIST, PPERSON_INFO);
+typedef struct linkedlist{
+    PNODE head;
+    int size;
+}LIST, *PLIST;
+
+
+
+// functions for linked list
+PNODE create_node();
+void insert_node(PLIST, PPERSON_INFO);
+void delete_node(PLIST, int);
+void modify_node(PLIST, int, PPERSON_INFO);
+
+// functions for file
+void file_add(PPERSON_INFO person);
+void file_delete(int index);
+void file_modify(int index, PPERSON_INFO person);
+
+
+
+
+
+
+
+
+// load info to linkedlist
+PLIST Load();
+
+// add info to linkedlist and file
+void Add(PLIST, PPERSON_INFO);
 
 // delete node from linkedlist and update file
-void Delete(PINFO_LIST, int index);
+void Delete(PLIST, int index);
 
 // modify node info and update file
-void Modify(PINFO_LIST, int, PPERSON_INFO);
+void Modify(PLIST, int, PPERSON_INFO);
 
 // print all info
-void PrintInfo(PINFO_LIST);
+void PrintInfo(PLIST);
 
 // close main
-void Close();
+void Close(PLIST);
 
 
 void add_dummy_data(PINFO_LIST);
@@ -59,9 +91,9 @@ int get_int(char *input_buffer);
 
 
 // cli and modules for modification
-void modifyCLI(char *, PINFO_LIST);
-void get_modify_input(char *input_buffer, PINFO_LIST list);
-int search(char *, PINFO_LIST);
 PPERSON_INFO get_person_info(char *input_buffer);
+int ask_search_again(char*);
+void search(char *, PLIST);
+
 
 #endif

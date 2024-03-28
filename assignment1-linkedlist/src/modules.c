@@ -74,5 +74,49 @@ int validate_input(const char *str, int type) {
 int get_int(char *input_buffer){
     fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
     input_buffer[strlen(input_buffer) - 1] = '\0'; // 개행 문자 제거
+    if(strlen(input_buffer) == 0) return -1;
     return atoi(input_buffer);
+}
+
+
+void search(char *input_buffer, PLIST list){
+    int i=0;
+
+    // search by name
+    if(validate_input(input_buffer, 1)){
+        PNODE curnode = list->head;
+        PPERSON_INFO person;
+        while(curnode->next != NULL){
+            curnode = curnode->next;
+            person = curnode->person;
+            if(strcmp(person->szNam, input_buffer) == 0){
+                printf("[%d] : [%s, %d, %s]\n", i, person->szNam, person->nAge, person->szPhone);
+            }
+            i++;
+        }
+    }
+
+    // search by age or phone
+    if(validate_input(input_buffer, 2)){
+        PNODE curnode = list->head;
+        PPERSON_INFO person;
+        while(curnode->next != NULL){
+            curnode = curnode->next;
+            person = curnode->person;
+            if(strcmp(person->szPhone, input_buffer) == 0 || person->nAge==atoi(input_buffer)){
+                printf("[%d] : [%s, %d, %s]\n", i++, person->szNam, person->nAge, person->szPhone);
+            }
+            i++;
+        }
+    }
+}
+
+int ask_search_again(char *input_buffer){
+    printf("[ALARM] search again? [Y/N] ");
+    fgets(input_buffer, INPUT_BUFFER_SIZE, stdin);
+    input_buffer[strlen(input_buffer) - 1] = '\0';
+
+    if(strcmp(input_buffer, "N")==0 || strcmp(input_buffer, "n")==0) return 0;
+    else return 1;
+    // return 1;
 }
